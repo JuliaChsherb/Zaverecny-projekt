@@ -1,0 +1,54 @@
+---
+title: "ver1(PDF)"
+author: "Yuliya Chsherbakova"
+output: pdf_document
+---
+## Motivacia
+
+Zmena klímy je jedným z najpálčivejších problémov súčasnosti. Vedecké štúdie ukazujú, že emisie CO2 sú hlavným prispievateľom k zvýšeniu globálnych teplôt. Pochopenie dynamiky zmeny teploty vo vzťahu k týmto emisiám je preto kľúčové. Takéto pochopenie môže pomôcť odborníkom a politikom vypracovať efektívne stratégie na zníženie negatívnych účinkov globálneho otepľovania. Implementácia týchto stratégií je nevyhnutná na ochranu ekosystémov a zabezpečenie udržateľnej budúcnosti pre ďalšie generácie.
+
+## Teoretické zdôvodnenie
+
+Na modelovanie závislosti teploty od emisií CO2 možno použiť model ARIMAX (AutoRegressive Integrated Moving Average with Exogenous variables). Tento model zohľadňuje vnútornú dynamiku časového radu aj vonkajšie faktory, ako sú emisie CO2. 
+
+Model ARIMAX má nasledujúci matematický opis:
+
+$$
+Y_t = c + \phi Y_{t-1} + \theta \epsilon_{t-1} + \beta X_t + \epsilon_t 
+$$ {#eq-line}
+kde:
+
+-   $Y_t$ je hodnota časového radu (teplota) v čase \(t\),
+-   $X_t$ je exogénna premenná (emisie CO2),
+-   $\phi$ sú AR (AutoRegresné) koeficienty,
+-   $\theta$ sú MA (Moving Average) koeficienty,
+-   $\beta$ sú regresné koeficienty,
+-   $\epsilon_t$ je náhodná chyba.
+
+## Vysvetlrnie modelu
+
+Tento model kombinuje prvky autoregresie, kde teplota v čase $t$ závisí od teploty v predchádzajúcom čase $t-1$, a pohyblivého priemeru, ktorý zohľadňuje vplyv predchádzajúcich chýb na aktuálnu hodnotu teploty. Zahrnutie exogénnych premenných, ako sú emisie CO2, umožňuje lepšie porozumieť a predikovať dynamiku teploty v závislosti od zmien v týchto premenných.
+
+## Vizualizácia údajov
+Údaje o teplote sú prevzaté zo zabudovaného súboru údajov "airmiles", ktorý predstavuje počet najazdených leteckých míľ (v tisícoch míľ). Údaje o umelých emisiách CO2 sú vygenerované pre tento príklad. Vizualizácia týchto údajov ukazuje historické trendy v teplote a umelých emisiách CO2, čo poskytuje základ pre ďalšiu analýzu.
+
+## Stacionarita časových radov
+Pred použitím modelu ARIMAX bolo potrebné skontrolovať stacionaritu časových radov teploty a emisií CO2. ADF test (Augmented Dickey-Fuller) ukázal, že oba časové rady neboli pôvodne stacionárne, takže boli diferencované, aby sa dosiahla stacionarita. Tento krok je dôležitý na zabezpečenie spoľahlivosti výsledkov modelu.
+
+## Modelovanie s ARIMAX
+Na predpovedanie teploty na základe emisií CO2 bol použitý model ARIMAX. Model ARIMAX bol zostavený s poriadkom (1, 0, 0) a exogénnou premennou, ktorou sú emisie CO2. Výsledky modelu ukázali, že zmeny emisií CO2 majú významný vplyv na zmenu teploty, čo je v súlade s očakávaniami teórie o globálnom otepľovaní.
+
+## Predpovedanie
+Predpovede na nasledujúcich 10 rokov ukázali rastúci trend teploty, čo zdôrazňuje význam opatrení na zníženie emisií CO2. Vizualizácia predpovedí ukazuje predpokladaný trend teploty spolu s intervalmi spoľahlivosti, čo poskytuje užitočný náhľad na možné budúce scenáre.
+
+## Analýza zvyškov
+Vizualizácia zvyškov modelu ARIMAX a histogram reziduálov potvrdzujú primeranosť zostrojeného modelu. Zvyšky nevykazujú žiadne výrazné vzory, čo naznačuje, že model dobre zachytil dynamiku časového radu a exogénnych premenných.
+
+## Celkové zhodnotenie
+Celkovo, model ARIMAX sa ukázal ako vhodný nástroj na modelovanie závislosti teploty od emisií CO2. Výsledky analýzy podporujú teóriu, že zmeny v emisiách CO2 majú priamy vplyv na zmenu teploty, čo je kľúčové pre tvorbu stratégií na boj proti globálnemu otepľovaniu. Prognózy naznačujú, že bez opatrení na zníženie emisií CO2 môžeme očakávať ďalší nárast teplôt, čo môže mať významné environmentálne a sociálno-ekonomické dôsledky. Implementácia efektívnych opatrení na zníženie emisií CO2 je teda nevyhnutná na zabezpečenie udržateľnej budúcnosti pre ďalšie generácie.
+
+## Odkaz na literatúru
+
+-   Box, G. E. P., Jenkins, G. M., & Reinsel, G. C. (2015). Time Series Analysis: Forecasting and Control. Wiley.
+-   Hyndman, R. J., & Athanasopoulos, G. (2018). Forecasting: principles and practice.
+
